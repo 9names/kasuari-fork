@@ -16,6 +16,12 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          - name: std (windows)
+            os: windows-2022
+            args: ""
+          - name: std (macos)
+            os: macos-14
+            args: ""
           - name: std
             target: x86_64-unknown-linux-gnu
             args: ""
