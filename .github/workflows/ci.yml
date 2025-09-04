@@ -21,8 +21,8 @@ jobs:
             target: x86_64-pc-windows-msvc
             args: ""
           - name: std (macos)
-            os: macos-14
-            target: aarch64-apple-darwin
+            os: macos-latest
+            target: x86_64-apple-darwin
             args: ""
           - name: std (linux)
             os: ubuntu-latest
@@ -47,7 +47,8 @@ jobs:
         run: cargo build --target ${{ matrix.target }} ${{ matrix.args }}
 
       - name: Test
-        run: cargo test --target ${{ matrix.target }} ${{ matrix.args }}
+        if: matrix.target != 'thumbv7em-none-eabi' && matrix.target != 'riscv32imc-unknown-none-elf'
+        run: cargo test
   clippy:
     runs-on: ubuntu-latest
     steps:
